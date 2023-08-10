@@ -4,10 +4,14 @@
 // Binary Search Trees
 
 /** Basic Theory and Operations
+ * The one pre-requisite of Binary Search is that the array should be in a sorted order.
+ * In most cases, a BST cannot be unique.
  * Binary Search tree operations :
  * 1) Insertion
- * 2) Deletion
- * 3) Search
+ * 2) Search
+ * 3) Deletion
+ * 4) Traversal :
+ * -Inorder, pre-order and post-order
  *
  */
 
@@ -114,7 +118,7 @@ Node *search(Node *root, int key)
   return search(root->right, key);
 }
 
-// Function to perform inorder traversal of the BST
+// Function to perform inorder traversal of the BST (left -Root- Right)
 void inorderTraversal(Node *root)
 {
   if (root != NULL)
@@ -150,15 +154,18 @@ void postorderTraversal(Node *root)
 void main()
 {
   Node *root = NULL;
+  int array[] = {85, 70, 100, 20, 40, 90, 105, 10};
+  // int array [] ={8,7, 9, 5, 4, 11, 10,14,4,1};
+
+  int size_of_array = sizeof(array) / sizeof(array[0]);
 
   // Insert elements into the BST
-  root = insert(root, 10);
-  root = insert(root, 100);
-  root = insert(root, 70);
-  root = insert(root, 20);
-  root = insert(root, 40);
-  root = insert(root, 105);
-  root = insert(root, 85);
+  printf("INSERTION:\n");
+  for (int i = 0; i < size_of_array; i++)
+  {
+    root = insert(root, array[i]);
+    printf("Element %d inserted into BST\n", array[i]);
+  }
 
   printf("TRAVERSAL : \n");
 
@@ -197,12 +204,13 @@ void main()
     if (root != NULL)
     {
       printf("%d successfully deleted from the BST.\n", deleteKey);
-    }else
-    printf("Delete Unsuccessful");
+    }
+    else
+      printf("Delete Unsuccessful");
   }
   else
   {
-    printf("%d not found in the BST.\n", deleteKey);
+    printf("Cannot delete %d. Not found in the BST.\n", deleteKey);
   }
 
   // Postorder traversal of the BST
@@ -210,3 +218,4 @@ void main()
   postorderTraversal(root);
   printf("\n");
 }
+
